@@ -65,8 +65,8 @@ describe Cell do
     cell_2.place_ship(cruiser)
     cell_2.fire_upon
     expect(cell_2.render).to eq("H")
-    # cell_2.fire_upon
-    # cell_2.fire_upon
-    # expect(cell_2.render).to eq("X")
+    cell_2.fire_upon
+    cell_2.fire_upon
+    expect(cell_2.render).to eq("X")
   end
 end
