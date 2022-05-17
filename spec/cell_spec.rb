@@ -52,5 +52,21 @@ describe Cell do
     expect(cell_2.render).to eq(".")
     expect(cell_2.render(true)).to eq("S")
   end
+  it "render can show a ship" do
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(cruiser)
 
+    expect(cell_2.render(true)).to eq("S")
+  end
+  it "render can show a hit, and sunk" do
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    expect(cell_2.render).to eq("H")
+    # cell_2.fire_upon
+    # cell_2.fire_upon
+    # expect(cell_2.render).to eq("X")
+  end
 end
