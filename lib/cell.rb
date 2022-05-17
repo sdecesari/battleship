@@ -14,6 +14,8 @@ class Cell
     else
       return false
     end
-
+  end
+  def place_ship(ship)
+    @ship = ship
   end
 end
