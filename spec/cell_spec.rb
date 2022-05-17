@@ -14,7 +14,7 @@ describe Cell do
     expect(@cell.ship).to eq(nil)
   end
   it "can test if ship is empty" do
-    expect(cell.empty?).to eq(true)
+    expect(@cell.empty?).to eq(true)
 
   end
 end
