@@ -10,4 +10,8 @@ RSpec.describe Ship do
     expect(@cruiser.name).to eq "Cruiser"
     expect(@cruiser.length).to eq 3
   end
+
+  it "returns health" do
+    expect(@cruiser.health).to eq 3
+  end
 end
