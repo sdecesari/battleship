@@ -33,12 +33,15 @@ class Cell
     @fired_upon = true
   end
 
-  def render
-    if @fired_upon != true
+  def render(show_ship = false)
+    if show_ship == true && empty? == false
+      return "S"
+    elsif @fired_upon != true
       return "."
     elsif @fired_upon == true && empty? == true
       return "M"
-
+    elsif @fired_upon == true && empty? == false
+      return "H"
     end
 
   end
