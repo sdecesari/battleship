@@ -1,8 +1,9 @@
-require 'lib/ship'
-require 'lib/cell'
+require './lib/ship'
+require './lib/cell'
+require 'pry'
 
 describe Cell do
-  before: each do
+  before :each do
     @cell = Cell.new("B4")
   end
   it "initializes and has attributes" do
