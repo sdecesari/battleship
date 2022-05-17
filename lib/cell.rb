@@ -32,4 +32,14 @@ class Cell
     end
     @fired_upon = true
   end
+
+  def render
+    if @fired_upon != true
+      return "."
+    elsif @fired_upon == true && empty? == true
+      return "M"
+
+    end
+
+  end
 end
