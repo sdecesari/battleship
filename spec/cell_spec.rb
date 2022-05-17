@@ -17,16 +17,21 @@ describe Cell do
     expect(@cell.empty?).to eq(true)
   end
   #Review if this is the best test
-  before :each do
+  it "can place a ship object" do
     cruiser = Ship.new("Cruiser", 3)
     @cell.place_ship(cruiser)
-  end
-  it "can place a ship object" do
-
     expect(@cell.ship).to eq(cruiser)
     expect(@cell.empty?).to eq(false)
   end
-  it "Cell starts not_fired upon" do
-    expect(cell.fired_upon?).to eq(false)
+  it "starts not fired_upon" do
+    cruiser = Ship.new("Cruiser", 3)
+    @cell.place_ship(cruiser)
+
+    expect(@cell.fired_upon).to eq(false)
+    @cell.fire_upon
+
+    expect(@cell.ship.health).to eq(2)
+    expect(@cell.fired_upon).to eq(true)
   end
+
 end
