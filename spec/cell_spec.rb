@@ -15,6 +15,12 @@ describe Cell do
   end
   it "can test if ship is empty" do
     expect(@cell.empty?).to eq(true)
-
+  end
+  #Review if this is the best test
+  it "can place a ship object" do
+    cruiser = Ship.new("Cruiser", 3)
+    @cell.place_ship(cruiser)
+    expect(@cell.ship).to eq(cruiser)
+    expect(@cell.empty?).to eq(false)
   end
 end
