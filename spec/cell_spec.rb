@@ -38,4 +38,10 @@ describe Cell do
 
     expect(@cell.render).to eq(".")
   end
+  it "render can show cell status: Missed" do
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+
+    expect(@cell.render).to eq("M")
+  end
 end
