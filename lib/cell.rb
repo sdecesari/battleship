@@ -1,10 +1,11 @@
 require './lib/ship'
 
 class Cell
-  attr_reader :coordinate
+  attr_reader :coordinate, :ship
 
   def initialize(coordinate)
     @coordinate = coordinate
+    @ship = nil
   end
 
 end
