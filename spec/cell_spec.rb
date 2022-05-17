@@ -12,6 +12,9 @@ describe Cell do
   end
   it "starts without a ship value" do
     expect(@cell.ship).to eq(nil)
+  end
+  it "can test if ship is empty" do
+    expect(cell.empty?).to eq(true)
 
   end
 end
