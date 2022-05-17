@@ -40,8 +40,11 @@ class Cell
       return "."
     elsif @fired_upon == true && empty? == true
       return "M"
+    elsif @fired_upon == true && @ship.sunk? == true
+      return "X"
     elsif @fired_upon == true && empty? == false
       return "H"
+
     end
 
   end
