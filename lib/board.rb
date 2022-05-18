@@ -23,4 +23,11 @@ class Board
   def valid_coordinate?(coordinate)
     cells.include?(coordinate)
   end
+  def valid_placement?(ship, coordinates)
+    if ship.length == coordinates.length
+      return true
+    else
+      return false
+    end
+  end
 end
