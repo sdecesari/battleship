@@ -9,10 +9,12 @@ RSpec.describe Board do
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
   end
+
   it "exists and has attr_reader" do
     expect(@board).to be_a Board
     expect(@board.cells).to be_a Hash
   end
+
   it "can tell if a coordinate is on the board" do
     expect(@board.valid_coordinate?("A1")).to eq(true)
     expect(@board.valid_coordinate?("D4")).to eq(true)
@@ -20,8 +22,26 @@ RSpec.describe Board do
     expect(@board.valid_coordinate?("E1")).to eq(false)
     expect(@board.valid_coordinate?("A22")).to eq(false)
   end
+
   it "valid_placement? false if ship length not same as coordinate range" do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
+  end
+
+  it "can check for consecutive cells" do
+    expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq false
+    expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq false
+    expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"]))
+    expect(@board.valid_placement?(@submarine, ["C1", "B1"]))
+  end
+
+  it "can check coordinates are not diagonal" do
+    expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq false
+    expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq false
+  end
+
+  it "can check the placement is valid" do
+    expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq true
+    expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq true
   end
 end

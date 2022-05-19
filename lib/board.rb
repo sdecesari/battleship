@@ -20,14 +20,29 @@ class Board
       "D4" => Cell.new("D4"),
     }
   end
+
   def valid_coordinate?(coordinate)
     cells.include?(coordinate)
   end
+
   def valid_placement?(ship, coordinates)
-    if ship.length == coordinates.length
-      return true
+  letters = coordinates.map {|coordinate| coordinate[0]}
+  numbers = coordinates.map {|coordinate| coordinate[1]}
+  ship_coordinates = coordinates.map {|coordinate| @cells[coordinate].empty?}
+    if ship.length != coordinates.length
+      false
+    elsif ship_coordinates.include?(false) == true
+      false
+    elsif letters.uniq.length == 1 && (numbers.min..numbers.max).to_a == numbers
+      true
+    elsif (letters.min..letters.max).to_a == letters && numbers.uniq.length == 1
+      true
+    elsif (letters.min..letters.max).to_a == letters && (numbers.min..numbers.max).to_a == numbers
+      false
+    elsif letters.uniq.length == 1 && numbers.uniq.length == numbers
+      false
     else
-      return false
+      false
     end
   end
 end
