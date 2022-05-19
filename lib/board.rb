@@ -45,4 +45,10 @@ class Board
       false
     end
   end
+
+  def place(ship, ship_coordinates)
+    ship_coordinates.map do |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
+  end
 end
