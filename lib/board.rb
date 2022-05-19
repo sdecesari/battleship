@@ -26,6 +26,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+    require 'pry'; binding.pry
   letters = coordinates.map {|coordinate| coordinate[0]}
   numbers = coordinates.map {|coordinate| coordinate[1]}
   ship_coordinates = coordinates.map {|coordinate| @cells[coordinate].empty?}
