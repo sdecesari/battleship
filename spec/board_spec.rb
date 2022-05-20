@@ -72,4 +72,9 @@ RSpec.describe Board do
 
     expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
   end
+  it " render can show placed ships" do
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+  end
 end
