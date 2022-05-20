@@ -71,7 +71,7 @@ class Board
     while row < board_size
       board_string += (letters.uniq[row] + " ")
       while col < board_size
-        board_string += @cells[coordinates[col]].render + " "
+        board_string += @cells[coordinates[col]].render(show_ship) + " "
         col += 1
       end
       col = 0
