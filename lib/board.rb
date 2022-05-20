@@ -1,6 +1,9 @@
+require_relative '../lib/cell'
+require 'pry'
 class Board
-  attr_reader :cells
+  attr_reader :cells, :board_size
   def initialize
+    @board_size = 4
     @cells = {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
@@ -22,7 +25,7 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    cells.include?(coordinate)
+    @cells.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
@@ -50,5 +53,31 @@ class Board
     ship_coordinates.map do |coordinate|
       @cells[coordinate].place_ship(ship)
     end
+  end
+#Refactor
+  def render(show_ship = false)
+
+    board_string = "  "
+    coordinates = @cells.keys
+    letters = coordinates.map {|coordinate| coordinate[0]}
+    numbers = coordinates.map {|coordinate| coordinate[1]}
+
+    numbers.uniq.each do |number|
+      board_string += (number.to_s + " ")
+    end
+    board_string += "\n"
+    row = 0
+    col = 0
+    while row < board_size
+      board_string += (letters.uniq[row] + " ")
+      while col < board_size
+        board_string += @cells[coordinates[col]].render + " "
+        col += 1
+      end
+      col = 0
+      board_string += "\n"
+      row += 1
+    end
+    return board_string
   end
 end
