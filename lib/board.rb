@@ -68,11 +68,13 @@ class Board
     board_string += "\n"
     row = 0
     col = 0
+    current_cell = 0
     while row < board_size
       board_string += (letters.uniq[row] + " ")
       while col < board_size
-        board_string += @cells[coordinates[col]].render(show_ship) + " "
+        board_string += @cells[coordinates[current_cell]].render(show_ship) + " "
         col += 1
+        current_cell += 1
       end
       col = 0
       board_string += "\n"
