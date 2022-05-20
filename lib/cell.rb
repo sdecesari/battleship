@@ -1,5 +1,5 @@
 require './lib/ship'
-require './lib/cell'
+require './lib/board'
 
 class Cell
   attr_reader :coordinate, :ship, :fired_upon
@@ -33,9 +33,6 @@ class Cell
     @fired_upon = true
   end
 
-
-
-end
   def render(show_ship = false)
     if show_ship == true && empty? == false
       return "S"
@@ -48,5 +45,5 @@ end
     elsif @fired_upon == true && empty? == false
       return "H"
     end
-
+  end
 end
