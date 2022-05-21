@@ -56,11 +56,10 @@ class Board
   end
 #Refactor
   def render(show_ship = false)
-
-    board_string = "  "
     coordinates = @cells.keys
     letters = coordinates.map {|coordinate| coordinate[0]}
     numbers = coordinates.map {|coordinate| coordinate[1]}
+    board_string = "  "
 
     numbers.uniq.each do |number|
       board_string += (number.to_s + " ")
@@ -80,6 +79,7 @@ class Board
       board_string += "\n"
       row += 1
     end
+    board_string += "\n"
     return board_string
   end
 end
