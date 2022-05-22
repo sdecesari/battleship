@@ -1,10 +1,33 @@
+require 'pry'
 class Computer
-  attr_reader :turns, :board, :cruiser, :submarine
+  attr_reader :turns, :board, :ships
 
   def initialize()
     @turns = []
     @board = Board.new
-    @cruiser = Ship.new('cruiser', 3)
-    @submarine = Ship.new('submarine', 2)
+    @ships = [
+      Ship.new('cruiser', 3), Ship.new('submarine', 2)
+    ]
+  end
+
+  def ship_placement
+    coordinates = []
+    @ships.each do |ship|
+      while !board.valid_placement?(ship, coordinates)
+        coordinates = board.cells.keys.sample(ship.length)
+      end
+      board.place(ship,coordinates)
+    end
+    return true
+  end
+
+  def shots_fired()
+    shot = board.cells.keys.sample
+      if shot != turns.include?(shot)
+        @turns << shot
+        return shot
+      else
+        return "error"
+      end
   end
 end
