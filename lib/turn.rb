@@ -11,8 +11,8 @@ class Turn
     @computer_board = computer_board
   end
 
-  def show_state(show_ship = false)
+  def show_state
     spacer = "============"
-    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer_board.render(show_ship) + "\n"  + spacer +  "PLAYER BOARD" + spacer + "\n" + @player_board.render(show_ship) + "\n"
+    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer_board.render + "\n" + spacer + "PLAYER BOARD" + spacer + "\n" + @player_board.render + "\n"
   end
 end

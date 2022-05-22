@@ -19,7 +19,7 @@ describe Turn do
     board_2 = Board.new()
     turn = Turn.new(board_1, board_2)
 
-    expect(turn.show_state).to eq("============" + "COMPUTER BOARD" + "============" + "\n" + board_2.render + "\n" +"============" + "PLAYER BOARD" + "============" + "\n" + board_1.render + "\n")
 
+    expect(turn.show_state).to eq("============COMPUTER BOARD============\n" + board_2.render + "============PLAYER BOARD============\n" + board_1.render + "\n")
   end
 end
