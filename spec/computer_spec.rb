@@ -7,9 +7,14 @@ require './lib/computer'
 require 'pry'
 
 describe Computer do
+  before :each do
+    @computer = Computer.new
+  end
   it "initializes" do
-    computer = Computer.new
-
-    expect(computer).to be_a Computer
+    expect(@computer).to be_a Computer
+  end
+  it "has ships" do
+    expect(@computer.cruiser).to be_a Ship
+    expect(@computer.submarine).to be_a Ship
   end
 end
