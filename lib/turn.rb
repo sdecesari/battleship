@@ -4,11 +4,13 @@ require './lib/ship'
 require './lib/battleship'
 
 class Turn
-  attr_reader :player_board, :computer_board
+  attr_reader :player_board, :computer_board, :player, :computer
 
-  def initialize(player_board, computer_board)
-    @player_board = player_board
-    @computer_board = computer_board
+  def initialize()
+    @player = Player.new
+    @computer = Computer.new
+    @player_board = Board.new
+    @computer_board = Board.new
   end
 
   def show_state(show_ship = false)
@@ -24,5 +26,5 @@ class Turn
       @player_board.cells[coordinate].fire_upon
       return player_board.cells[coordinate].render
     end
-  end 
+  end
 end
