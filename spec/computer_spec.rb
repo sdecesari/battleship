@@ -17,4 +17,7 @@ describe Computer do
     expect(@computer.cruiser).to be_a Ship
     expect(@computer.submarine).to be_a Ship
   end
+  it "has a board" do
+    expect(@computer.board).to be_a Board
+  end
 end
