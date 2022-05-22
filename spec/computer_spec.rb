@@ -26,5 +26,7 @@ describe Computer do
   end
   it "can select a coordinate to fire on" do
     @computer.shots_fired
+    expect(@computer.turns[0]).to be_a String
+    expect(@computer.turns[0]).not_to eq("error")
   end
 end
