@@ -14,6 +14,11 @@ class Battleship
       p "Goodbye"
     else answer == 'p'
       p "Let's play!"
+      # game_start
     end
   end
+
+  # def game_start
+  #
+  # end
 end
