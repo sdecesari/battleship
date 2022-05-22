@@ -79,7 +79,6 @@ class Board
       board_string += "\n"
       row += 1
     end
-    board_string += "\n"
     return board_string
   end
 end

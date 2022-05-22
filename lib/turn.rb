@@ -11,8 +11,18 @@ class Turn
     @computer_board = computer_board
   end
 
-  def show_state
+  def show_state(show_ship = false)
     spacer = "============"
-    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer_board.render + "\n" + spacer + "PLAYER BOARD" + spacer + "\n" + @player_board.render + "\n"
+    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer_board.render(show_ship) + "\n"  + spacer +  "PLAYER BOARD" + spacer + "\n" + @player_board.render(show_ship) + "\n"
   end
+
+  def take_turn(player, coordinate)
+    if player == "player"
+      @computer_board.cells[coordinate].fire_upon
+      return computer_board.cells[coordinate].render
+    elsif player == "computer"
+      @player_board.cells[coordinate].fire_upon
+      return player_board.cells[coordinate].render
+    end
+  end 
 end
