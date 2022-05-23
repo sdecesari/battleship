@@ -1,39 +1,50 @@
 class Battleship
 
+  attr_accessor :turn
+
+  def initialize
+    @turn = Turn.new
+  end
+
   def menu
-    p "Welcome to BATTLESHIP"
-    p "Enter p to play. Enter q to quit."
+    puts "Welcome to BATTLESHIP"
+    puts "Enter p to play. Enter q to quit."
     answer = gets.strip.downcase
     until answer == 'p' || answer == 'q'
-      p "Invalid response"
-      p "Enter p to play. Enter q to quit."
+      puts "Invalid response"
+      puts "Enter p to play. Enter q to quit."
       answer = gets.downcase.strip
     end
 
     if answer == 'q'
-      p "Goodbye"
-    else answer == 'p'
-      p "Let's play!"
+      puts "Goodbye"
+    elsif answer == 'p'
+      puts '=' * 40
+      game_setup
     end
-    game_setup
   end
 
   def game_setup
-    #computer ship placement
-    p computer.ship_placement
-    #player ship placement
-    player.ship_placement
-    #call game_start
+    @turn.computer.ship_placement
+    @turn.player.ship_placement
+    game_start
   end
 
   def game_start
-    turn.show_state
-    p turn.results("computer", computer.shots_fired)
-    player.shots_fired
-    turn.show_state
-
+    @turn.show_state
+    puts @turn.results("computer", @turn.computer.shots_fired)
+    @turn.player.shots_fired
+    @turn.show_state
+    # until game_end do
+    # game_end
   end
-  #calls game_start
-  #calls game_end
-  #calls menu
+
+  def game_end
+    if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
+      puts "I won!"
+    else @turn.computer.crusier.sunk? == true && @turn.computer.submarine.sunk? == true
+      puts "You won!"
+    end
+    menu
+  end
 end
