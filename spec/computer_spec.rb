@@ -27,7 +27,7 @@ RSpec.describe Computer do
   it "ship_placement returns true when ships are placed correctly" do
     expect(@computer.ship_placement).to eq(true)
   end
-  
+
   it "can select a coordinate to fire on" do
     @computer.shots_fired
     expect(@computer.turns[0]).to be_a String
