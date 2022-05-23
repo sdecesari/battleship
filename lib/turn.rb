@@ -24,4 +24,25 @@ class Turn
         return player_board.cells[coordinate].render
     end
   end
+
+  def results(player, result)
+    results = ""
+    if player == "player"
+      if result == "M"
+        results = "Your shot on #{player.turns.last} was a miss."
+      elsif result == "H"
+        results = "Your shot on #{player.turns.last} was a hit!"
+      elsif result == "X"
+        results = "Your shot on #{player.turns.last} sunk my #{computer.board.cells[player.turns.last].name}!"
+      end
+    elsif player == "computer"
+      if result == "M"
+        results = "My shot on #{computer.turns.last} was a miss."
+      elsif result == "H"
+        results = "My shot on #{computer.turns.last} was a hit!"
+      elsif result == "X"
+        results = "My shot on #{computer.turns.last} sunk your #{player.board.cells[player.turns.last].name}!"
+      end
+      return results
+  end
 end
