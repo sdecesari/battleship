@@ -14,11 +14,26 @@ class Battleship
       p "Goodbye"
     else answer == 'p'
       p "Let's play!"
-      # game_start
     end
+    game_setup
   end
 
-  # def game_start
-  #
-  # end
+  def game_setup
+    #computer ship placement
+    p computer.ship_placement
+    #player ship placement
+    player.ship_placement
+    #call game_start
+  end
+
+  def game_start
+    turn.show_state
+    p turn.results("computer", computer.shots_fired)
+    player.shots_fired
+    turn.show_state
+
+  end
+  #calls game_start
+  #calls game_end
+  #calls menu
 end

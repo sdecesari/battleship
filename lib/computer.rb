@@ -5,6 +5,7 @@ class Computer
   def initialize(board)
     @turns = []
     @board = board
+
     @ships = [
       Ship.new('cruiser', 3), Ship.new('submarine', 2)
     ]
