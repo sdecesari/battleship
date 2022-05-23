@@ -12,7 +12,7 @@ class Turn
 
   def show_state(show_ship = false)
     spacer = "============"
-    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer.computer_board.render(show_ship) + "\n"  + spacer +  "PLAYER BOARD" + spacer + "\n" + @player.player_board.render(show_ship) + "\n"
+    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer.computer_board.render(show_ship) + "\n"  + spacer +  "PLAYER BOARD" + spacer + "\n" + @player.player_board.render(true) + "\n"
   end
 
   def take_turn(player, coordinate)
