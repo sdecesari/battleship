@@ -1,8 +1,8 @@
 class Player
 
-  attr_accessor :board,
+  attr_accessor :player_board,
                 :cruiser,
-                :submarine
+                :submarine        
   def initialize(board)
     @player_board = board
     @cruiser = Ship.new('cruiser', 3)

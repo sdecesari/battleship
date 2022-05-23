@@ -3,7 +3,6 @@ require './lib/cell'
 require './lib/board'
 require './lib/battleship'
 require './lib/player'
-require 'pry'
 
 RSpec.describe Player do
   before :each do

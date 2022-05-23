@@ -1,7 +1,6 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
-require 'pry'
 
 RSpec.describe Board do
   before :each do
@@ -44,6 +43,7 @@ RSpec.describe Board do
     expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq true
     expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq true
   end
+
   it "can place a ship" do
     @board.place(@cruiser, ["A1", "A2", "A3"])
     cell_1 = @board.cells["A1"]
@@ -54,6 +54,7 @@ RSpec.describe Board do
     expect(cell_2.ship).to eq(@cruiser)
     expect(cell_3.ship).to eq(@cruiser)
   end
+
   it "cells with a specific ship are equal" do
     @board.place(@cruiser, ["A1", "A2", "A3"])
     cell_1 = @board.cells["A1"]
@@ -62,16 +63,19 @@ RSpec.describe Board do
 
     expect(cell_3.ship).to eq(cell_2.ship)
   end
+
   it "won't allow overlapping ships" do
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
     expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
   end
+
   it "can render the initial board" do
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
     expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
   end
+
   it " render can show placed ships" do
     @board.place(@cruiser, ["A1", "A2", "A3"])
 

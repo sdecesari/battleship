@@ -1,13 +1,11 @@
-require 'pry'
 class Computer
-  attr_reader :turns, :board, :ships
-
-  def initialize()
+  attr_reader :turns,
+              :board,
+              :ships
+  def initialize(board)
     @turns = []
-    @board = Board.new
-    @ships = [
-      Ship.new('cruiser', 3), Ship.new('submarine', 2)
-    ]
+    @board = board
+    @ships = [Ship.new('cruiser', 3), Ship.new('submarine', 2)]
   end
 
   def ship_placement
@@ -23,11 +21,11 @@ class Computer
 
   def shots_fired()
     shot = board.cells.keys.sample
-      if shot != turns.include?(shot)
-        @turns << shot
-        return shot
-      else
-        return "error"
-      end
+    if shot != turns.include?(shot)
+      @turns << shot
+      return shot
+    else
+      return "error"
+    end
   end
 end

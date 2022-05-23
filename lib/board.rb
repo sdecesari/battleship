@@ -1,7 +1,6 @@
-require_relative '../lib/cell'
-require 'pry'
 class Board
-  attr_reader :cells, :board_size
+  attr_reader :cells,
+              :board_size
   def initialize
     @board_size = 4
     @cells = {
