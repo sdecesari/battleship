@@ -2,11 +2,13 @@ class Player
 
   attr_accessor :player_board,
                 :cruiser,
-                :submarine        
+                :submarine,
+                :turns
   def initialize(board)
     @player_board = board
     @cruiser = Ship.new('cruiser', 3)
     @submarine = Ship.new('submarine', 2)
+    @turns = []
   end
 
   def ship_placement
@@ -40,6 +42,8 @@ class Player
     until @player_board.valid_coordinate?(player_coordinates) == true do
       p "Please enter a valid coordinate:"
       player_coordinates = gets.chomp.capitalize
+        @turns << player_coordinates
     end
+    turns
   end
 end
