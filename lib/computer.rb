@@ -2,9 +2,10 @@ require 'pry'
 class Computer
   attr_reader :turns, :board, :ships
 
-  def initialize()
+  def initialize(board)
     @turns = []
-    @board = Board.new
+    @board = board
+
     @ships = [
       Ship.new('cruiser', 3), Ship.new('submarine', 2)
     ]
