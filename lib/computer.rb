@@ -1,11 +1,13 @@
+require 'pry'
 class Computer
-  attr_reader :turns,
-              :board,
-              :ships
-  def initialize(board)
+  attr_reader :turns, :board, :ships
+
+  def initialize()
     @turns = []
-    @board = board
-    @ships = [Ship.new('cruiser', 3), Ship.new('submarine', 2)]
+    @board = Board.new
+    @ships = [
+      Ship.new('cruiser', 3), Ship.new('submarine', 2)
+    ]
   end
 
   def ship_placement
@@ -16,16 +18,16 @@ class Computer
       end
       board.place(ship,coordinates)
     end
-    return true
+    return "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\n"
   end
 
   def shots_fired()
     shot = board.cells.keys.sample
-    if shot != turns.include?(shot)
-      @turns << shot
-      return shot
-    else
-      return "error"
-    end
+      if shot != turns.include?(shot)
+        @turns << shot
+        return shot
+      else
+        return "error"
+      end
   end
 end
