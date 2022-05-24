@@ -9,8 +9,11 @@ class Turn
   end
 
   def show_state(show_ship = false)
-    spacer = "============"
-    p spacer + "COMPUTER BOARD" + spacer + "\n" + @computer.board.render(show_ship) + "\n"  + spacer +  "PLAYER BOARD" + spacer + "\n" + @player.player_board.render(show_ship) + "\n"
+    spacer = "=" * 12
+    puts spacer + "COMPUTER BOARD" + spacer
+    puts @computer.board.render(show_ship)
+    puts spacer +  "PLAYER BOARD" + spacer
+    puts @player.player_board.render(show_ship)
   end
 
   def take_turn(player, coordinate)
@@ -39,7 +42,7 @@ class Turn
       elsif result == "H"
         results = "My shot on #{computer.turns.last} was a hit!"
       elsif result == "X"
-        results = "My shot on #{computer.turns.last} sunk your #{player.board.cells[player.turns.last].name}!"
+        results = "My shot on #{computer.turns.last} sunk your #{player.player_board.cells[player.turns.last].name}!"
       end
       return results
     end
