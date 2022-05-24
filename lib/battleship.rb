@@ -1,9 +1,10 @@
 class Battleship
 
-  attr_accessor :turn
+  attr_accessor :turn, :game_end
 
   def initialize
     @turn = Turn.new
+    @game_end = false
   end
 
   def menu
@@ -32,17 +33,26 @@ class Battleship
 
   def game_start
     @turn.show_state
-    puts @turn.results("computer", @turn.computer.shots_fired)
-    @turn.player.shots_fired
-    @turn.show_state
-    # until game_end do
+    results = @turn.take_turn("player", @turn.player.shots_fired)
+    #require 'pry'; binding.pry
+    puts @turn.results("player", results)
+    results = @turn.take_turn("computer", @turn.computer.shots_fired)
+    puts @turn.results("computer", results)
+    game_start
+     # if game_end !=true
+     #   game_start
+     # else
+     #   game_end
+     # end
+    #until game_end do
+
     # game_end
   end
 
   def game_end
     if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
       puts "I won!"
-    else @turn.computer.crusier.sunk? == true && @turn.computer.submarine.sunk? == true
+    else @turn.computer.cruiser.sunk? == true && @turn.computer.submarine.sunk? == true
       puts "You won!"
     end
     menu

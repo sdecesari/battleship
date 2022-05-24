@@ -37,11 +37,13 @@ class Player
     puts "Enter the coordinate for your shot:"
     player_coordinates = gets.chomp.capitalize
 
-    until @player_board.valid_coordinate?(player_coordinates) == true do
+    while @player_board.valid_coordinate?(player_coordinates) == false do
       puts "Please enter a valid coordinate:"
       player_coordinates = gets.chomp.capitalize
-        @turns << player_coordinates
+
     end
-    turns
+    @turns << player_coordinates
+    #require 'pry'; binding.pry
+    return @turns.last
   end
 end
