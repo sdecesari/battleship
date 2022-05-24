@@ -52,7 +52,7 @@ class Battleship
   def game_end
     if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
       puts "I won!"
-    else @turn.computer.cruiser.sunk? == true && @turn.computer.submarine.sunk? == true
+    elsif @turn.computer.cruiser.sunk? == true && @turn.computer.submarine.sunk? == true
       puts "You won!"
     end
     menu
