@@ -25,12 +25,10 @@ class Computer
 
   def shots_fired
     shot = @board.cells.keys.sample
-      if !@turns.include?(shot)
+      until !@turns.include?(shot)
+        shot = @board.cells.keys.sample
+      end
         @turns << shot
         return shot
-      else
-        return "error"
-      end
-      require 'pry'; binding.pry
   end
 end
