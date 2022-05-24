@@ -11,7 +11,7 @@ class Turn
   def show_state(show_ship = false)
     spacer = "=" * 12
     puts spacer + "COMPUTER BOARD" + spacer
-    puts @computer.board.render(false)
+    puts @computer.board.render(true)
     puts spacer +  "PLAYER BOARD" + spacer
     puts @player.board.render(true)
   end
@@ -40,7 +40,7 @@ class Turn
       if result == "M"
         results = "My shot on #{@computer.turns.last} was a miss."
       elsif result == "X"
-        results = "My shot on #{@computer.turns.last} sunk your #{@player.board.cells[@player.turns.last].ship.name}!"
+        results = "My shot on #{@computer.turns.last} sunk your #{@player.board.cells[@computer.turns.last].ship.name}!"
       elsif result == "H"
         results = "My shot on #{@computer.turns.last} was a hit!"
       end

@@ -37,10 +37,9 @@ class Player
     puts "Enter the coordinate for your shot:"
     player_coordinates = gets.chomp.capitalize
 
-    while @board.valid_coordinate?(player_coordinates) == false do
+    until @board.valid_coordinate?(player_coordinates) == true && @turns.include?(player_coordinates) == false do
       puts "Please enter a valid coordinate:"
       player_coordinates = gets.chomp.capitalize
-
     end
     @turns << player_coordinates
     return @turns.last
