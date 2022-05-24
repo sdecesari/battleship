@@ -32,9 +32,12 @@ class Battleship
 
   def game_start
     @turn.show_state
-    puts @turn.results("computer", @turn.computer.shots_fired)
-    @turn.player.shots_fired
-    @turn.show_state
+    results = @turn.take_turn("player", @turn.player.shots_fired)
+    #require 'pry'; binding.pry
+    puts @turn.results("player", results)
+    results = @turn.take_turn("computer", @turn.computer.shots_fired)
+    #@turn.show_state
+    puts @turn.results("computer", results)
     # until game_end do
     # game_end
   end

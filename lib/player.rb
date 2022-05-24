@@ -42,6 +42,6 @@ class Player
       player_coordinates = gets.chomp.capitalize
         @turns << player_coordinates
     end
-    turns
+    return @turns.last
   end
 end

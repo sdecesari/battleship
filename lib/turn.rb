@@ -11,9 +11,9 @@ class Turn
   def show_state(show_ship = false)
     spacer = "=" * 12
     puts spacer + "COMPUTER BOARD" + spacer
-    puts @computer.board.render(show_ship)
+    puts @computer.board.render(false)
     puts spacer +  "PLAYER BOARD" + spacer
-    puts @player.player_board.render(show_ship)
+    puts @player.player_board.render(true)
   end
 
   def take_turn(player, coordinate)
@@ -27,7 +27,7 @@ class Turn
   end
 
   def results(player, result)
-    results = ""
+    results = result
     if player == "player"
       if result == "M"
         results = "Your shot on #{player.turns.last} was a miss."
@@ -44,6 +44,7 @@ class Turn
       elsif result == "X"
         results = "My shot on #{computer.turns.last} sunk your #{player.player_board.cells[player.turns.last].name}!"
       end
+      #require 'pry';binding.pry
       return results
     end
   end
