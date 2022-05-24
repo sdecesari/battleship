@@ -42,11 +42,7 @@ class Turn
       elsif result == "H"
         results = "My shot on #{@computer.turns.last} was a hit!"
       elsif result == "X"
-<<<<<<< HEAD
         results = "My shot on #{@computer.turns.last} sunk your #{@player.board.cells[@player.turns.last].ship.name}!"
-=======
-        results = "My shot on #{@computer.turns.last} sunk your #{player.board.cells[@player.turns.last].name}!"
->>>>>>> 2c78d63d15ab5d31594496e4fb42692b54b7692c
       end
       #require 'pry';binding.pry
       return results
