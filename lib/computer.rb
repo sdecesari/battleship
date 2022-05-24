@@ -1,7 +1,7 @@
-require 'pry'
 class Computer
-  attr_reader :turns, :board, :ships
-
+  attr_reader :turns,
+              :board,
+              :ships
   def initialize(board)
     @turns = []
     @board = board
@@ -25,7 +25,7 @@ class Computer
 
   def shots_fired()
     shot = @board.cells.keys.sample
-      if shot != turns.include?(shot)
+      if !turns.include?(shot)
         @turns << shot
         return shot
       else
