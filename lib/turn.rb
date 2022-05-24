@@ -13,7 +13,7 @@ class Turn
     puts spacer + "COMPUTER BOARD" + spacer
     puts @computer.board.render(false)
     puts spacer +  "PLAYER BOARD" + spacer
-    puts @player.player_board.render(true)
+    puts @player.player.board.render(true)
   end
 
   def take_turn(player, coordinate)
@@ -21,8 +21,8 @@ class Turn
       @computer.board.cells[coordinate].fire_upon
         return @computer.board.cells[coordinate].render
     elsif player == "computer"
-      @player.player_board.cells[coordinate].fire_upon
-        return @player.player_board.cells[coordinate].render
+      @player.player.board.cells[coordinate].fire_upon
+        return @player.player.board.cells[coordinate].render
     end
   end
 
@@ -42,7 +42,7 @@ class Turn
       elsif result == "H"
         results = "My shot on #{@computer.turns.last} was a hit!"
       elsif result == "X"
-        results = "My shot on #{@computer.turns.last} sunk your #{@player.player_board.cells[@player.turns.last].ship.name}!"
+        results = "My shot on #{@computer.turns.last} sunk your #{player.player.board.cells[@player.turns.last].name}!"
       end
       #require 'pry';binding.pry
       return results
