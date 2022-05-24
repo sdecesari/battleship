@@ -30,19 +30,19 @@ class Turn
     results = result
     if player == "player"
       if result == "M"
-        results = "Your shot on #{player.turns.last} was a miss."
+        results = "Your shot on #{@player.turns.last} was a miss."
       elsif result == "H"
-        results = "Your shot on #{player.turns.last} was a hit!"
+        results = "Your shot on #{@player.turns.last} was a hit!"
       elsif result == "X"
-        results = "Your shot on #{player.turns.last} sunk my #{computer.board.cells[player.turns.last].name}!"
+        results = "Your shot on #{@player.turns.last} sunk my #{computer.board.cells[@player.turns.last].name}!"
       end
     elsif player == "computer"
       if result == "M"
-        results = "My shot on #{computer.turns.last} was a miss."
+        results = "My shot on #{@computer.turns.last} was a miss."
       elsif result == "H"
-        results = "My shot on #{computer.turns.last} was a hit!"
+        results = "My shot on #{@computer.turns.last} was a hit!"
       elsif result == "X"
-        results = "My shot on #{computer.turns.last} sunk your #{player.player_board.cells[player.turns.last].name}!"
+        results = "My shot on #{@computer.turns.last} sunk your #{player.player_board.cells[@player.turns.last].name}!"
       end
       #require 'pry';binding.pry
       return results

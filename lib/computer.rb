@@ -23,13 +23,14 @@ class Computer
     puts "=" * 40
   end
 
-  def shots_fired()
+  def shots_fired
     shot = @board.cells.keys.sample
-      if shot != turns.include?(shot)
+      if !@turns.include?(shot)
         @turns << shot
         return shot
       else
         return "error"
       end
+      require 'pry'; binding.pry
   end
 end
