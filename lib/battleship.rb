@@ -8,6 +8,10 @@ class Battleship
   end
 
   def menu
+    if @stop == true
+      reset_game
+      @stop = false
+    end
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
     answer = gets.strip.downcase
@@ -32,18 +36,17 @@ class Battleship
   end
 
   def game_start
-    @turn.show_state
-    results = @turn.take_turn("player", @turn.player.shots_fired)
-    #require 'pry'; binding.pry
-    puts @turn.results("player", results)
-    results = @turn.take_turn("computer", @turn.computer.shots_fired)
-    puts @turn.results("computer", results)
-    if @stop != true
-      game_start
-    else
+
+    until @stop == true
+      @turn.show_state
+      results = @turn.take_turn("player", @turn.player.shots_fired)
+      puts @turn.results("player", results)
+      results = @turn.take_turn("computer", @turn.computer.shots_fired)
+      puts @turn.results("computer", results)
+      #require 'pry'; binding.pry
       game_end
     end
-    # game_start
+    menu
   end
 
   def game_end
@@ -54,6 +57,10 @@ class Battleship
       puts "You won!"
       @stop = true
     end
-    menu
+  end
+
+  def reset_game()
+    @turn = Turn.new
+
   end
 end
