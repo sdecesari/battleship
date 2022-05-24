@@ -18,6 +18,11 @@ RSpec.describe Turn do
 
     expect(turn.player).to be_a Player
     expect(turn.computer).to be_a Computer
+  end 
+
+  it "can show state of the board" do
+    turn = Turn.new
+    expect(turn.show_state).to be_a String
   end
 
   it "take_turn updates player/computer board" do

@@ -19,10 +19,10 @@ class Turn
   def take_turn(player, coordinate)
     if player == "player"
       @computer.board.cells[coordinate].fire_upon
-        return computer.board.cells[coordinate].render
+        return @computer.board.cells[coordinate].render
     elsif player == "computer"
       @player.player_board.cells[coordinate].fire_upon
-        return player.player_board.cells[coordinate].render
+        return @player.player_board.cells[coordinate].render
     end
   end
 
