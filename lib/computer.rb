@@ -31,4 +31,7 @@ class Computer
         @turns << shot
         return shot
   end
+  def add_ship(ship)
+    @ships << ship
+  end
 end

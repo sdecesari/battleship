@@ -14,7 +14,7 @@ class Player
 
   def ship_placement
     puts "The cruiser is three units long and the submarine is two units long"
-    puts @board.render
+    puts @board.render(true)
     i = 0
     while i < @ships.length
       puts "Enter the squares for the #{@ships[i].name} (#{@ships[i].length} spaces):"
@@ -25,6 +25,7 @@ class Player
         ship_coordinates = gets.chomp.upcase.split(" ")
       end
       @board.place(@ships[i], ship_coordinates)
+      puts @board.render(true)
       i += 1
     end
   end
@@ -39,5 +40,8 @@ class Player
     end
     @turns << player_coordinates
     return @turns.last
+  end
+  def add_ship(ship)
+    @ships << ship
   end
 end
