@@ -24,13 +24,20 @@ RSpec.describe Computer do
     expect(@computer.board).to be_a Board
   end
 
-  xit "ship_placement returns true when ships are placed correctly" do
-    expect(@computer.ship_placement).to be_a String
-  end
-
   it "can select a coordinate to fire on" do
     @computer.shots_fired
     expect(@computer.turns[0]).to be_a String
     expect(@computer.turns[0]).not_to eq("error")
+  end
+  it "has ships" do
+    expect(@computer.ships[0]).to be_a Ship
+    expect(@computer.ships[1]).to be_a Ship
+    expect(@computer.ships.length).to eq(2)
+  end
+  it "can add more ships" do
+    @computer.add_ship(Ship.new('battleship', 5))
+
+    expect(@computer.ships[2].name).to eq('battleship')
+    expect(@computer.ships.length).to eq(3)
   end
 end

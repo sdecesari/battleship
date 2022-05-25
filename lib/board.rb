@@ -1,6 +1,6 @@
 class Board
-  attr_reader :cells,
-              :board_size
+  attr_reader :cells
+  attr_accessor :board_size
   def initialize(board_size = 4)
     @board_size = board_size
     @cells = Hash.new()

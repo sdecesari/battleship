@@ -9,7 +9,7 @@ class Battleship
 
   def menu
     if @stop == true
-      reset_game
+      self.reset_game
       @stop = false
     end
     puts "Welcome to BATTLESHIP"
@@ -23,6 +23,7 @@ class Battleship
 
     if answer == 'q'
       puts "Goodbye"
+
     elsif answer == 'p'
       puts '=' * 40
       puts "Would you like a custom board size? Y/N?"
@@ -32,7 +33,7 @@ class Battleship
         answer = gets.strip.downcase
       end
       if answer == "n"
-        self.game_setup
+        game_setup
       elsif answer == "y"
         puts "Enter a number between 5 and 15."
         user_board = gets.strip.to_i
@@ -41,7 +42,8 @@ class Battleship
           user_board = gets.strip.to_i
         end
         @turn = Turn.new(user_board)
-        self.game_setup
+        custom_ships
+        #game_setup
       end
     end
   end
@@ -67,7 +69,6 @@ class Battleship
 
   def game_end
       player_sunk = @turn.player.ships.count{|ship|ship.sunk?}
-
       computer_sunk = @turn.computer.ships.count{|ship|ship.sunk?}
       if computer_sunk == @turn.computer.ships.length
         puts "You won!"
@@ -76,37 +77,45 @@ class Battleship
         puts "I won!"
         @stop = true
       end
-
-      #require 'pry'; binding.pry
-      # i = 0
-      # while i < @turn.player.ships.length
-      #
-      #   if @turn.player.ships[i].sunk?
-      #     player_sunk +=1
-      #     i += 1
-      #   elsif @turn.computer.ships[i].sunk?
-      #     computer_sunk +=1
-      #     i += 1
-      #   end
-      # end
-      # if computer_sunk == @turn.computer.ships.length
-      #   puts "You won!"
-      #   @stop = true
-      #
-      # elsif player_sunk == @turn.player.ships.length
-      #   puts "I won!"
-      #   @stop = true
-      # end
-
-    # if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
-    #   puts "I won!"
-    #   @stop = true
-    # elsif @turn.computer.ships[0].sunk? == true && @turn.computer.ships[1].sunk? == true
-    #   puts "You won!"
-    #   @stop = true
-    # end
   end
 
+  def custom_ships()
+    puts '=' * 40
+    puts "Would you like to add custom ships?"
+    puts "You can add up to 3 if they will fit. Y/N?"
+    answer = gets.strip.downcase
+    until answer == "y" || answer == "n"
+      puts "Invalid response! Y/N?"
+      answer = gets.strip.downcase
+    end
+    if answer == "n"
+      game_setup
+    elsif answer == "y"
+      puts "How many would you like to add?(3 max)?"
+      answer = gets.strip.to_i
+      until answer > 0 && answer < 4
+        puts "Invalid response! Choose a number between 1 and 3!"
+        answer = gets.strip.to_i
+      end
+      ship_name = ""
+      ship_size = 0
+      ships_added = 0
+      while ships_added < answer
+        puts "Enter your ship name."
+        ship_name = gets.chomp
+        puts "Enter your ship size."
+        ship_size = gets.chomp.to_i
+        until ship_size <= @turn.player.board.board_size
+          puts "Too big. Size less than #{@turn.player.board.size} please."
+          ship_size = gets.chomp.to_i
+        end
+        @turn.player.ships << Ship.new(ship_name, ship_size)
+        @turn.computer.ships << Ship.new(ship_name, ship_size)
+        ships_added += 1
+      end
+      game_setup
+    end
+  end
   def reset_game()
     @turn = Turn.new(4)
   end

@@ -19,4 +19,10 @@ RSpec.describe Player do
     expect(@player.ships[1]).to be_a Ship
     expect(@player.ships.length).to eq(2)
   end
+  it "can add more ships" do
+    @player.add_ship(Ship.new('battleship', 5))
+
+    expect(@player.ships[2].name).to eq('battleship')
+    expect(@player.ships.length).to eq(3)
+  end
 end
