@@ -1,7 +1,7 @@
 class Battleship
 
-  attr_accessor :turn, :stop
-
+  attr_accessor :turn,
+                :stop
   def initialize
     @turn = Turn.new(4)
     @stop = false
@@ -35,15 +35,14 @@ class Battleship
       if answer == "n"
         game_setup
       elsif answer == "y"
-        puts "Enter a number between 5 and 15."
+        puts "Enter a number between 5 and 10."
         user_board = gets.strip.to_i
-        until user_board > 4 && user_board < 16
-          puts "No. Enter a number between 5 and 15."
+        until user_board > 4 && user_board < 11
+          puts "No. Enter a number between 5 and 10."
           user_board = gets.strip.to_i
         end
         @turn = Turn.new(user_board)
         custom_ships
-        #game_setup
       end
     end
   end
@@ -81,7 +80,7 @@ class Battleship
   def custom_ships()
     puts '=' * 40
     puts "Would you like to add custom ships?"
-    puts "You can add up to 3 if they will fit. Y/N?"
+    puts "You can add up to 3 additional ships. Y/N?"
     answer = gets.strip.downcase
     until answer == "y" || answer == "n"
       puts "Invalid response! Y/N?"
@@ -90,7 +89,7 @@ class Battleship
     if answer == "n"
       game_setup
     elsif answer == "y"
-      puts "How many would you like to add?(3 max)?"
+      puts "How many additional ships would you like to add?(3 max)?"
       answer = gets.strip.to_i
       until answer > 0 && answer < 4
         puts "Invalid response! Choose a number between 1 and 3!"
@@ -115,6 +114,7 @@ class Battleship
       game_setup
     end
   end
+
   def reset_game()
     @turn = Turn.new(4)
   end

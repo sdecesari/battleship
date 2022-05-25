@@ -1,8 +1,8 @@
 class Player
 
   attr_accessor :board,
-              :ships,
-              :turns
+                :ships,
+                :turns
   def initialize(board)
     @turns = []
     @board = board
@@ -33,7 +33,6 @@ class Player
   def shots_fired
     puts "Enter the coordinate for your shot:"
     player_coordinates = gets.chomp.capitalize
-
     until @board.valid_coordinate?(player_coordinates) == true && @turns.include?(player_coordinates) == false do
       puts "Please enter a valid coordinate:"
       player_coordinates = gets.chomp.capitalize
@@ -41,6 +40,7 @@ class Player
     @turns << player_coordinates
     return @turns.last
   end
+  
   def add_ship(ship)
     @ships << ship
   end
