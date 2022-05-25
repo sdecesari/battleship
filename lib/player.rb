@@ -1,36 +1,32 @@
 class Player
 
   attr_accessor :board,
-                :cruiser,
-                :submarine,
-                :turns
+              :ships,
+              :turns
   def initialize(board)
-    @board = board
-    @cruiser = Ship.new('cruiser', 3)
-    @submarine = Ship.new('submarine', 2)
     @turns = []
+    @board = board
+    @ships = [
+      Ship.new('cruiser', 3),
+      Ship.new('submarine', 2)
+    ]
   end
 
   def ship_placement
     puts "The cruiser is three units long and the submarine is two units long"
     puts @board.render
-    puts "Enter the squares for the cruiser (3 spaces):"
-    cruiser_coordinates = gets.chomp.upcase.split(" ")
+    i = 0
+    while i < @ships.length
+      puts "Enter the squares for the #{@ships[i].name} (#{@ships[i].length} spaces):"
+      ship_coordinates = gets.chomp.upcase.split(" ")
 
-    until @board.valid_placement?(@cruiser, cruiser_coordinates) == true do
-      puts "Invalid coordinates. Please try again!"
-      cruiser_coordinates = gets.chomp.upcase.split(" ")
+      until @board.valid_placement?(@ships[i], ship_coordinates) == true do
+        puts "Invalid coordinates. Please try again!"
+        ship_coordinates = gets.chomp.upcase.split(" ")
+      end
+      @board.place(@ships[i], ship_coordinates)
+      i += 1
     end
-    @board.place(@cruiser, cruiser_coordinates)
-
-    puts "Enter the squares for the submarine (2 spaces):"
-    submarine_coordinates = gets.chomp.upcase.split(" ")
-
-    until @board.valid_placement?(@submarine, submarine_coordinates) == true do
-      puts "Invalid coordinates. Please try again!"
-      submarine_coordinates = gets.chomp.upcase.split(" ")
-    end
-    @board.place(@submarine, submarine_coordinates)
   end
 
   def shots_fired

@@ -19,7 +19,7 @@ class Computer
       @board.place(ship,coordinates)
     end
     puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your two ships."
+    puts "You now need to lay out your #{@ships.length} ships."
     puts "=" * 40
   end
 
