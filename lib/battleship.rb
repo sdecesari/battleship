@@ -3,7 +3,7 @@ class Battleship
   attr_accessor :turn, :stop
 
   def initialize
-    @turn = Turn.new(board_size = 4)
+    @turn = Turn.new(4)
     @stop = false
   end
 
@@ -32,7 +32,7 @@ class Battleship
         answer = gets.strip.downcase
       end
       if answer == "n"
-        game_setup
+        self.game_setup
       elsif answer == "y"
         puts "Enter a number between 5 and 15."
         user_board = gets.strip.to_i
@@ -41,7 +41,7 @@ class Battleship
           user_board = gets.strip.to_i
         end
         @turn = Turn.new(user_board)
-        game_setup
+        self.game_setup
       end
     end
   end
@@ -53,31 +53,61 @@ class Battleship
   end
 
   def game_start
-
+    #require 'pry';binding.pry
     until @stop == true
       @turn.show_state
       results = @turn.take_turn("player", @turn.player.shots_fired)
       puts @turn.results("player", results)
       results = @turn.take_turn("computer", @turn.computer.shots_fired)
       puts @turn.results("computer", results)
-      #require 'pry'; binding.pry
       game_end
     end
     menu
   end
 
   def game_end
-    if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
-      puts "I won!"
-      @stop = true
-    elsif @turn.computer.ships[0].sunk? == true && @turn.computer.ships[1].sunk? == true
-      puts "You won!"
-      @stop = true
-    end
+      player_sunk = @turn.player.ships.count{|ship|ship.sunk?}
+
+      computer_sunk = @turn.computer.ships.count{|ship|ship.sunk?}
+      if computer_sunk == @turn.computer.ships.length
+        puts "You won!"
+        @stop = true
+      elsif player_sunk == @turn.player.ships.length
+        puts "I won!"
+        @stop = true
+      end
+
+      #require 'pry'; binding.pry
+      # i = 0
+      # while i < @turn.player.ships.length
+      #
+      #   if @turn.player.ships[i].sunk?
+      #     player_sunk +=1
+      #     i += 1
+      #   elsif @turn.computer.ships[i].sunk?
+      #     computer_sunk +=1
+      #     i += 1
+      #   end
+      # end
+      # if computer_sunk == @turn.computer.ships.length
+      #   puts "You won!"
+      #   @stop = true
+      #
+      # elsif player_sunk == @turn.player.ships.length
+      #   puts "I won!"
+      #   @stop = true
+      # end
+
+    # if @turn.player.cruiser.sunk? == true && @turn.player.submarine.sunk? == true
+    #   puts "I won!"
+    #   @stop = true
+    # elsif @turn.computer.ships[0].sunk? == true && @turn.computer.ships[1].sunk? == true
+    #   puts "You won!"
+    #   @stop = true
+    # end
   end
 
   def reset_game()
-    @turn = Turn.new
-
+    @turn = Turn.new(4)
   end
 end

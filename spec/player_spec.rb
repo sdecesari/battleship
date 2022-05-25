@@ -6,7 +6,7 @@ require './lib/player'
 
 RSpec.describe Player do
   before :each do
-    @board = Board.new
+    @board = Board.new(4)
     @player = Player.new(@board)
   end
 
@@ -15,7 +15,8 @@ RSpec.describe Player do
   end
 
   it "has ships" do
-    expect(@player.cruiser).to be_a Ship
-    expect(@player.submarine).to be_a Ship
+    expect(@player.ships[0]).to be_a Ship
+    expect(@player.ships[1]).to be_a Ship
+    expect(@player.ships.length).to eq(2)
   end
 end
