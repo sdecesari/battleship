@@ -36,7 +36,7 @@ class Battleship
       elsif answer == "y"
         puts "Enter a number between 5 and 15."
         user_board = gets.strip.to_i
-        until user_board > 4 || user_board < 16
+        until user_board > 4 && user_board < 16
           puts "No. Enter a number between 5 and 15."
           user_board = gets.strip.to_i
         end
@@ -77,7 +77,7 @@ class Battleship
   end
 
   def reset_game()
-    @turn = Turn.new
+    @turn = Turn.new(4)
 
   end
 end
