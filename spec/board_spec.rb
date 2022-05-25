@@ -14,13 +14,6 @@ RSpec.describe Board do
     expect(@board.cells).to be_a Hash
   end
 
-  it "can tell if a coordinate is on the board" do
-    expect(@board.valid_coordinate?("A1")).to eq(true)
-    expect(@board.valid_coordinate?("D4")).to eq(true)
-    expect(@board.valid_coordinate?("A5")).to eq(false)
-    expect(@board.valid_coordinate?("E1")).to eq(false)
-    expect(@board.valid_coordinate?("A22")).to eq(false)
-  end
   it "can still tell if a coordinate is on board with new board size" do
     @board_2 = Board.new(6)
     expect(@board_2.valid_coordinate?("A1")).to eq(true)
@@ -29,6 +22,7 @@ RSpec.describe Board do
     expect(@board_2.valid_coordinate?("G1")).to eq(false)
     expect(@board_2.valid_coordinate?("A22")).to eq(false)
   end
+  
   it "valid_placement? false if ship length not same as coordinate range" do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)

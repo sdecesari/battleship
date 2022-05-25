@@ -1,7 +1,7 @@
-require 'pry'
 class Computer
-  attr_reader :turns, :board, :ships
-
+  attr_reader :turns,
+              :board,
+              :ships
   def initialize(board)
     @turns = []
     @board = board
@@ -28,9 +28,10 @@ class Computer
       until !@turns.include?(shot)
         shot = @board.cells.keys.sample
       end
-        @turns << shot
-        return shot
+      @turns << shot
+      return shot
   end
+
   def add_ship(ship)
     @ships << ship
   end

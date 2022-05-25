@@ -1,6 +1,7 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
+require './lib/computer'
 require './lib/battleship'
 require './lib/player'
 
@@ -19,6 +20,7 @@ RSpec.describe Player do
     expect(@player.ships[1]).to be_a Ship
     expect(@player.ships.length).to eq(2)
   end
+
   it "can add more ships" do
     @player.add_ship(Ship.new('battleship', 5))
 

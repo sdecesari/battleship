@@ -19,7 +19,6 @@ RSpec.describe Cell do
     expect(@cell.empty?).to eq(true)
   end
 
-  #Review if this is the best test
   it "can place a ship object" do
     cruiser = Ship.new("Cruiser", 3)
     @cell.place_ship(cruiser)

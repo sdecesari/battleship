@@ -29,11 +29,13 @@ RSpec.describe Computer do
     expect(@computer.turns[0]).to be_a String
     expect(@computer.turns[0]).not_to eq("error")
   end
+
   it "has ships" do
     expect(@computer.ships[0]).to be_a Ship
     expect(@computer.ships[1]).to be_a Ship
     expect(@computer.ships.length).to eq(2)
   end
+  
   it "can add more ships" do
     @computer.add_ship(Ship.new('battleship', 5))
 
