@@ -1,9 +1,9 @@
 class Turn
   attr_reader :player,
               :computer
-  def initialize
-    @computer_board = Board.new
-    @player_board = Board.new
+  def initialize(board_size)
+    @computer_board = Board.new(board_size)
+    @player_board = Board.new(board_size)
     @player = Player.new(@player_board)
     @computer = Computer.new(@computer_board)
   end

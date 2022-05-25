@@ -3,7 +3,7 @@ class Battleship
   attr_accessor :turn, :stop
 
   def initialize
-    @turn = Turn.new
+    @turn = Turn.new(board_size = 4)
     @stop = false
   end
 
@@ -25,7 +25,24 @@ class Battleship
       puts "Goodbye"
     elsif answer == 'p'
       puts '=' * 40
-      game_setup
+      puts "Would you like a custom board size? Y/N?"
+      answer = gets.strip.downcase
+      until answer == "y" || answer == "n"
+        puts "Invalid response! Y/N?"
+        answer = gets.strip.downcase
+      end
+      if answer == "n"
+        game_setup
+      elsif answer == "y"
+        puts "Enter a number between 5 and 15."
+        user_board = gets.strip.to_i
+        until user_board > 4 || user_board < 16
+          puts "No. Enter a number between 5 and 15."
+          user_board = gets.strip.to_i
+        end
+        @turn = Turn.new(user_board)
+        game_setup
+      end
     end
   end
 
